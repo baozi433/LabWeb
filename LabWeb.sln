@@ -5,6 +5,10 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabWeb", "LabWeb\LabWeb.csproj", "{07D969D7-61F7-4B2A-890D-DA1040A8595E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabWeb.CoreBusiness", "LabWeb.CoreBusiness\LabWeb.CoreBusiness.csproj", "{83971917-DA9C-4046-8131-51935CF4E125}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabWeb.DataStore", "LabWeb.DataStore\LabWeb.DataStore.csproj", "{5627827E-3945-467A-90E0-CB6889CB29FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{07D969D7-61F7-4B2A-890D-DA1040A8595E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07D969D7-61F7-4B2A-890D-DA1040A8595E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07D969D7-61F7-4B2A-890D-DA1040A8595E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83971917-DA9C-4046-8131-51935CF4E125}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83971917-DA9C-4046-8131-51935CF4E125}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83971917-DA9C-4046-8131-51935CF4E125}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83971917-DA9C-4046-8131-51935CF4E125}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5627827E-3945-467A-90E0-CB6889CB29FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5627827E-3945-467A-90E0-CB6889CB29FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5627827E-3945-467A-90E0-CB6889CB29FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5627827E-3945-467A-90E0-CB6889CB29FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
