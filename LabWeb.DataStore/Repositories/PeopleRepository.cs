@@ -10,40 +10,44 @@ namespace LabWeb.DataStore.Repositories
 {
     public class PeopleRepository : IPeopleRepository
     {
-        private readonly ISqlDataAccess _sqlDataAccess;
+        private readonly ISqlDataAccess _DbContext;
 
-        public PeopleRepository(ISqlDataAccess sqlDataAccess)
+        public PeopleRepository(ISqlDataAccess DbContext)
         {
-            _sqlDataAccess = sqlDataAccess;
+            _DbContext = DbContext;
         }
         public Task Add(PersonModel person)
         {
-            throw new NotImplementedException();
+            string sql = "insert into dbo.People (Title, FirstName, LastName, ResearchArea, EmailAddress, Biography, ImageURL) " +
+                         "values (@Title, @FirstName, @LastName, @ResearchArea, @EmailAddress, @Biography, @ImageURL)";
+            return _DbContext.SaveData(sql, person);
         }
 
         public Task DeletePerson(int Id)
         {
-            throw new NotImplementedException();
+            string sql = "delete from dbo.People where id = @Id";
+            return _DbContext.SaveData(sql, new {Id = Id});
         }
 
         public Task<List<PersonModel>> GetPeople()
         {
-            throw new NotImplementedException();
+            string sql = "select * from dbo.People";
+            return _DbContext.LoadData<PersonModel, dynamic>(sql, new { });
         }
 
-        public Task InsertPerson(PersonModel person)
+        public Task<List<PersonModel>> SearchPeople(string filter)
         {
-            throw new NotImplementedException();
-        }
+            if(string.IsNullOrWhiteSpace(filter)) return GetPeople();
 
-        public Task<List<PersonModel>> SearchPeople()
-        {
-            throw new NotImplementedException();
+            string sql = "select * from dbo.People where FirstName = @FirstName";
+            return _DbContext.LoadData<PersonModel, dynamic>(sql, new { FirstName = filter});
         }
 
         public Task Update(PersonModel person)
         {
-            throw new NotImplementedException();
+            string sql = "update dbo.People set Title = @Title, FirstName = @FirstName, LastName = @LastName," +
+                         " ResearchArea = @ResearchArea, EmailAddress= @EmailAddress, Biography = @Biography, ImageURL = @ImageURL WHERE Id = @Id";
+            return _DbContext.SaveData(sql, new { person });
         }
     }
 }

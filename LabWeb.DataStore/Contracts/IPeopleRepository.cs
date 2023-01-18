@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace LabWeb.DataStore.Contracts
 {
-    internal interface IPeopleRepository
+    public interface IPeopleRepository
     {
         Task<List<PersonModel>> GetPeople();
-        Task InsertPerson(PersonModel person);
-        Task<List<PersonModel>> SearchPeople();
+        Task<List<PersonModel>> SearchPeople(string filter);
         Task DeletePerson(int Id);
         Task Add(PersonModel person);
         Task Update(PersonModel person);

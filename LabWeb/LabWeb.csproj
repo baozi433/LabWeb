@@ -6,4 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LabWeb.DataStore\LabWeb.DataStore.csproj" />
+  </ItemGroup>
+
 </Project>
