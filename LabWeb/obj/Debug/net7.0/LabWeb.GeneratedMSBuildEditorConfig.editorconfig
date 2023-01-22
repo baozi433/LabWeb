@@ -24,12 +24,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/yuanj/Documents/Projects/.NET/LabWeb/LabWeb/Pages/DisplayPeople.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGlzcGxheVBlb3BsZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/yuanj/Documents/Projects/.NET/LabWeb/LabWeb/Pages/FetchData.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmV0Y2hEYXRhLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/yuanj/Documents/Projects/.NET/LabWeb/LabWeb/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/yuanj/Documents/Projects/.NET/LabWeb/LabWeb/Pages/People.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGVvcGxlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/yuanj/Documents/Projects/.NET/LabWeb/LabWeb/Shared/SurveyPrompt.razor]

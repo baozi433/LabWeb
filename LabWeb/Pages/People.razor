@@ -1,0 +1,34 @@
+﻿@page "/people"
+
+@if(AllPeople == null)
+{
+    <h3>Loading data...</h3>
+}
+else
+{
+    <h3 class="mb-5">People at HIT Lab NZ</h3>
+    var peopleCount = AllPeople.Count();
+
+    if(peopleCount > 0)
+    {
+        <div class="row mt-3 d-flex">
+            <DisplayPeople people="AllPeople"></DisplayPeople>
+        </div>
+        <hr class="mb-3" />
+    }
+}
+
+
+@code {
+
+    [Inject]
+    public IPeopleRepository peopleRepository { get; set; }
+
+    public IEnumerable<PersonModel> AllPeople { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        AllPeople = await peopleRepository.GetPeople();
+    }
+
+}

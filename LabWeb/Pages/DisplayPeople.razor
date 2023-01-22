@@ -1,0 +1,25 @@
+﻿<h3 class="text-center">Staff</h3>
+<hr/>
+
+@foreach(var p in people)
+{
+    <div class="col-xl-3 col-md-6 mb-2">
+        <a href="/PersonDetails/@p.Id"></a>
+        <div class="card">
+            <img class="img-thumbnail" src="@p.ImageURL">
+            <div class="card-body">
+                <h5 class="card-title mb-3 text-center">
+                    @p.FirstName @p.LastName
+                </h5>
+                <p class="card-text text-sm-center pb-2">@p.Title </p>
+
+            </div>
+        </div>
+    </div>
+}
+
+
+@code {
+    [Parameter]
+    public IEnumerable<PersonModel> people { get; set; }
+}
