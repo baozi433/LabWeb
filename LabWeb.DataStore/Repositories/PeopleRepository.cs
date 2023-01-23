@@ -23,10 +23,10 @@ namespace LabWeb.DataStore.Repositories
             return _DbContext.SaveData(sql, person);
         }
 
-        public Task DeletePerson(int Id)
+        public Task DeletePerson(int id)
         {
             string sql = "delete from dbo.People where id = @Id";
-            return _DbContext.SaveData(sql, new {Id = Id});
+            return _DbContext.SaveData(sql, new {Id = id});
         }
 
         public Task<List<PersonModel>> GetPeople()
@@ -49,5 +49,12 @@ namespace LabWeb.DataStore.Repositories
                          " ResearchArea = @ResearchArea, EmailAddress= @EmailAddress, Biography = @Biography, ImageURL = @ImageURL WHERE Id = @Id";
             return _DbContext.SaveData(sql, new { person });
         }
+
+        public Task<PersonModel> GetPeople(int id)
+        {
+            string sql = "select * from dbo.People where id = @Id";
+            return _DbContext.LoadSingleData<PersonModel, dynamic>(sql, new { Id = id });
+        }
+
     }
 }
