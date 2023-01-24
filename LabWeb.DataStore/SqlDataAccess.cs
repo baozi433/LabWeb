@@ -40,13 +40,14 @@ namespace LabWeb.DataStore
             }
         }
 
-        public async Task SaveData<T>(string sql, T parameters)
+        public async Task<int> SaveData<T>(string sql, T parameters)
         {
             string connectionString = _config.GetConnectionString(connectionStringName);
 
             using (IDbConnection connection = new SqlConnection(connectionString))
             {
                 var data = await connection.ExecuteAsync(sql, parameters);
+                return data;
             }
         }
 

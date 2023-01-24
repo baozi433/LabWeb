@@ -16,16 +16,15 @@ namespace LabWeb.DataStore.Repositories
         {
             _DbContext = DbContext;
         }
-        public Task Add(PersonModel person)
+        public Task<int> Add(PersonModel person)
         {
-            string sql = "insert into dbo.People (Title, FirstName, LastName, ResearchArea, EmailAddress, Biography, ImageURL) " +
-                         "values (@Title, @FirstName, @LastName, @ResearchArea, @EmailAddress, @Biography, @ImageURL)";
+            string sql = "insert into dbo.People (Title, FirstName, LastName, ResearchArea, EmailAddress, Biography, ImageURL) values (@Title, @FirstName, @LastName, @ResearchArea, @EmailAddress, @Biography, @ImageURL)";
             return _DbContext.SaveData(sql, person);
         }
 
-        public Task DeletePerson(int id)
+        public Task<int> DeletePerson(int id)
         {
-            string sql = "delete from dbo.People where id = @Id";
+            string sql = "delete from dbo.People where Id = @Id";
             return _DbContext.SaveData(sql, new {Id = id});
         }
 
@@ -43,16 +42,15 @@ namespace LabWeb.DataStore.Repositories
             return _DbContext.LoadData<PersonModel, dynamic>(sql, new { FirstName = filter});
         }
 
-        public Task Update(PersonModel person)
+        public Task<int> Update(int id)
         {
-            string sql = "update dbo.People set Title = @Title, FirstName = @FirstName, LastName = @LastName," +
-                         " ResearchArea = @ResearchArea, EmailAddress= @EmailAddress, Biography = @Biography, ImageURL = @ImageURL WHERE Id = @Id";
-            return _DbContext.SaveData(sql, new { person });
+            string sql = "update dbo.People set Title = @Title, FirstName = @FirstName, LastName = @LastName, ResearchArea = @ResearchArea, EmailAddress= @EmailAddress, Biography = @Biography, ImageURL = @ImageURL where Id = @Id";
+            return _DbContext.SaveData(sql, new { Id = id });
         }
 
         public Task<PersonModel> GetPeople(int id)
         {
-            string sql = "select * from dbo.People where id = @Id";
+            string sql = "select * from dbo.People where Id = @Id";
             return _DbContext.LoadSingleData<PersonModel, dynamic>(sql, new { Id = id });
         }
 

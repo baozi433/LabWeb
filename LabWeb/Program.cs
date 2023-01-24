@@ -1,16 +1,18 @@
-using LabWeb.Data;
 using LabWeb.DataStore;
 using LabWeb.DataStore.Contracts;
 using LabWeb.DataStore.Repositories;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddControllers(); //blazor serverside adding
+
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddTransient<ISqlDataAccess, SqlDataAccess>();
 builder.Services.AddTransient<IPeopleRepository, PeopleRepository>();
 
@@ -29,6 +31,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.MapControllers(); //blazor serverside adding
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
