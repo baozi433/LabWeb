@@ -12,12 +12,14 @@
 </form>
 
 @code {
-    private string filter; //state data binding
+    //private string filter; //state data binding
+    [Parameter]
+    public string filter { get; set; }
 
     [Parameter]
     public EventCallback<string> OnSearch { get; set; }
 
-    private voild HandleSearch()
+    private void HandleSearch()
     {
         OnSearch.InvokeAsync(filter); //call back to pass state to the parental component
     }

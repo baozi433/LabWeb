@@ -1,5 +1,8 @@
 ﻿@page "/people"
 
+<h3 class="text-center">Staff</h3>
+<hr />
+
 @if(AllPeople == null)
 {
     <h3>Loading data...</h3>
@@ -8,10 +11,21 @@ else
 {
     var peopleCount = AllPeople.Count();
 
+    <SearchBar OnSearch="HandleSearch"></SearchBar>
+
+
     if(peopleCount > 0)
     {
         <div class="row mt-3 d-flex">
-            <DisplayPeople people="AllPeople"></DisplayPeople>
+            @if(string.IsNullOrWhiteSpace(searchTerm))
+            {
+                <DisplayPeople people="AllPeople"></DisplayPeople>
+            }
+            else
+            {
+                <DisplayPeople people="SearchPeople"></DisplayPeople>
+            }
+
         </div>
         <hr class="mb-3" />
     }
@@ -25,9 +39,20 @@ else
 
     public IEnumerable<PersonModel> AllPeople { get; set; }
 
+    public IEnumerable<PersonModel> SearchPeople { get; set; }
+
+    public string searchTerm = "";
+
     protected override async Task OnInitializedAsync()
     {
         AllPeople = await PeopleRepository.GetPeople();
+        SearchPeople = await PeopleRepository.SearchPeople(searchTerm);
+    }
+
+    private async void HandleSearch(string filter)
+    {
+        searchTerm = filter;
+        SearchPeople = await PeopleRepository.SearchPeople(searchTerm);
     }
 
 }
