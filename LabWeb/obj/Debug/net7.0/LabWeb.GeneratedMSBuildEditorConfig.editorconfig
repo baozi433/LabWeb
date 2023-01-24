@@ -20,16 +20,20 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/yuanj/Documents/Projects/.NET/LabWeb/LabWeb/Components/DisplayError.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xEaXNwbGF5RXJyb3IucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/yuanj/Documents/Projects/.NET/LabWeb/LabWeb/Components/DisplayPeople.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xEaXNwbGF5UGVvcGxlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/yuanj/Documents/Projects/.NET/LabWeb/LabWeb/Components/SearchBar.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xTZWFyY2hCYXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/yuanj/Documents/Projects/.NET/LabWeb/LabWeb/Pages/Counter.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/yuanj/Documents/Projects/.NET/LabWeb/LabWeb/Pages/DisplayError.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGlzcGxheUVycm9yLnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/yuanj/Documents/Projects/.NET/LabWeb/LabWeb/Pages/DisplayPeople.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGlzcGxheVBlb3BsZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/yuanj/Documents/Projects/.NET/LabWeb/LabWeb/Pages/Index.razor]
@@ -52,9 +56,9 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/yuanj/Documents/Projects/.NET/LabWeb/LabWeb/Pages/DisplaySpinner.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGlzcGxheVNwaW5uZXIucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-tpvhhv9fj8
+[C:/Users/yuanj/Documents/Projects/.NET/LabWeb/LabWeb/Components/DisplaySpinner.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xEaXNwbGF5U3Bpbm5lci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-fo8wpyfzvz
 
 [C:/Users/yuanj/Documents/Projects/.NET/LabWeb/LabWeb/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=

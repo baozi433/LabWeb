@@ -11,20 +11,26 @@ else if(ErrorMessage != null)
 else
 {
     <h3 class="mb-5">Person Details</h3>
-    <div class="row">
-        <div class="col-md-6 mb-4">
+    <div class="row p-5">
+        <div class="col-lg-5 mb-4">
             <img class="img-fluid" src="@Person.ImageURL" />
         </div>
-        <div class="col-md-6">
-            <h3>@Person.FirstName @Person.LastName</h3>
-            <p class="mb-4">@Person.Title</p>
-            <p class="mb-4">@Person.EmailAddress</p>
-            <p class="mb-4">@Person.ResearchAreas</p>
+        <div class="col-lg-7">
+            <h3 class="text-center">@Person.FirstName @Person.LastName</h3>
+            <h3 class="text-center">@Person.Title</h3>
+            <p class="mb-4 text-center">
+                <a href="mailto:@Person.EmailAddress">@Person.EmailAddress</a>
+            </p>
+            <p class="mb-4 text-center">@Person.ResearchArea</p>
             <p class="mb-4">
                 <b>
                     @Person.Biography
                 </b>      
             </p>
+            <div class="text-center">
+                <a class="btn btn-primary" href="@Person.WebLink" role="button" target="_blank">Research Profile</a>
+            </div>
+            
         </div>
     </div>
 }

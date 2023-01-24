@@ -44,7 +44,7 @@ namespace LabWeb.DataStore.Repositories
 
         public Task<int> Update(int id)
         {
-            string sql = "update dbo.People set Title = @Title, FirstName = @FirstName, LastName = @LastName, ResearchArea = @ResearchArea, EmailAddress= @EmailAddress, Biography = @Biography, ImageURL = @ImageURL where Id = @Id";
+            string sql = "update dbo.People set Title = @Title, FirstName = @FirstName, LastName = @LastName, ResearchArea = @ResearchArea, EmailAddress= @EmailAddress, Biography = @Biography, ImageURL = @ImageURL, WebLink = @WebLink where Id = @Id";
             return _DbContext.SaveData(sql, new { Id = id });
         }
 

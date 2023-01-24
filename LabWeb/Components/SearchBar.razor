@@ -1,0 +1,25 @@
+﻿<form class="row g-3">
+    <div class="col-auto p-2">
+        Search:
+    </div>
+    <div class="col-auto">
+        <label for="filter" class="visually-hidden">Search:</label>
+        <input type="text" class="form-control" id="filter" placeholder="Search term" @bind-value=filter></input>
+    </div>
+    <div class="col-auto">
+        <button type="button" class="btn btn-primary mb-3" @onclick=HandleSearch>Search</button>
+    </div>
+</form>
+
+@code {
+    private string filter; //state data binding
+
+    [Parameter]
+    public EventCallback<string> OnSearch { get; set; }
+
+    private voild HandleSearch()
+    {
+        OnSearch.InvokeAsync(filter); //call back to pass state to the parental component
+    }
+
+}

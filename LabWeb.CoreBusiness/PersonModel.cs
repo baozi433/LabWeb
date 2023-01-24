@@ -10,5 +10,6 @@
         public string EmailAddress { get; set; } = string.Empty;
         public string Biography { get; set; } = string.Empty;
         public string ImageURL { get; set; } = string.Empty;
+        public string WebLink { get; set; } = string.Empty;
     }
 }
