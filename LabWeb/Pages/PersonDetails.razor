@@ -1,5 +1,56 @@
-﻿<h3>PersonDetails</h3>
+﻿@page "/PersonDetails/{Id:int}"
+
+@if(Person == null && ErrorMessage == null)
+{
+    <DisplaySpinner />
+}
+else if(ErrorMessage != null)
+{
+    <DisplayError ErrorMessage="@ErrorMessage"></DisplayError>
+}
+else
+{
+    <h3 class="mb-5">Person Details</h3>
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <img class="img-fluid" src="@Person.ImageURL" />
+        </div>
+        <div class="col-md-6">
+            <h3>@Person.FirstName @Person.LastName</h3>
+            <p class="mb-4">@Person.Title</p>
+            <p class="mb-4">@Person.EmailAddress</p>
+            <p class="mb-4">@Person.ResearchAreas</p>
+            <p class="mb-4">
+                <b>
+                    @Person.Biography
+                </b>      
+            </p>
+        </div>
+    </div>
+}
+
 
 @code {
 
+    [Parameter]
+    public int Id { get; set; }
+
+    [Inject]
+    public IPeopleRepository PeopleRepository { get; set; }
+
+    public PersonModel Person { get; set; }
+
+    public string ErrorMessage { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            Person = await PeopleRepository.GetPeople(Id);
+        }
+        catch(Exception ex)
+        {
+            ErrorMessage = ex.Message;
+        }
+    }
 }

@@ -21,13 +21,13 @@ else
 @code {
 
     [Inject]
-    public IPeopleRepository peopleRepository { get; set; }
+    public IPeopleRepository PeopleRepository { get; set; }
 
     public IEnumerable<PersonModel> AllPeople { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        AllPeople = await peopleRepository.GetPeople();
+        AllPeople = await PeopleRepository.GetPeople();
     }
 
 }
