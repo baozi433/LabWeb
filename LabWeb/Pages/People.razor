@@ -46,6 +46,7 @@ else
     {
         searchTerm = filter;
         SearchPeople = await PeopleRepository.SearchPeople(searchTerm);
+        await InvokeAsync(() => { StateHasChanged(); });
     }
 
 }

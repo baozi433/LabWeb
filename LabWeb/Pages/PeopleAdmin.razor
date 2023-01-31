@@ -36,7 +36,7 @@
 @code {
     [Inject]
     public IPeopleRepository PeopleRepository { get; set; }
-    public List<PersonModel> People { get; set; }
+    public IEnumerable<PersonModel> People { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
