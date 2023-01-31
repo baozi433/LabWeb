@@ -10,10 +10,10 @@
         <td>@person.ResearchArea</td>
         <td>@person.EmailAddress</td>
         <td>
-            <button class="btn btn-primary btn-sm" @onclick="HandleDetail">
+            <button class="btn btn-primary btn-sm" @onclick="OnDetail">
                 <span class="oi oi-bookmark"></span>
             </button>
-            <button class="btn btn-warningbtn-sm" @onclick="HandleEdit">
+            <button class="btn btn-warningbtn-sm" @onclick="OnEdit">
                 <span class="oi oi-pencil"></span>
             </button>
             <button class="btn btn-danger btn-sm" @onclick="OnDelete">
@@ -27,23 +27,15 @@
     [Parameter]
     public PersonModel person { get; set; }
 
+    [Inject]
+    public IPeopleRepository PeopleRepository { get; set; }
+
     [Parameter]
     public EventCallback OnDelete { get; set; }
 
-    public void HandleDelete()
-    {
-        OnDelete.InvokeAsync(person);
-    }
+    [Parameter]
+    public EventCallback OnEdit { get; set; }
 
-    public void HandleEdit()
-    {
-        Navigation.NavigateTo($"/admin/people/edit/{person.Id}");
-    }
-
-    public void HandleDetail()
-    {
-        Navigation.NavigateTo($"/persondetails/{person.Id}");
-    }
-
-
+    [Parameter]
+    public EventCallback OnDetail { get; set; }
 }
