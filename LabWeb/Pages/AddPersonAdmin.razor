@@ -1,53 +1,59 @@
 ﻿@page "/admin/people/add/"
+@inject NavigationManager Navigation
 
 <PageTitle>Add person</PageTitle>
 
 @if (person != null)
 {
-    <h3>Edit person</h3>
+    <h3>Add person</h3>
 
-    <EditForm Model="@person" OnSubmit="SaveChangesAsync">
+    <EditForm Model="@person" OnValidSubmit="SaveChangesAsync">
         <DataAnnotationsValidator />
-        <p>
+        <div class="mb-3">
             <label for="title">Title:</label>
             <InputText @bind-Value="@person.Title" id="title" class="form-control" />
             <ValidationMessage For="@(() => person.Title)" />
-        </p>
-        <p>
-            <label for="firstname">First Name:</label>
-            <InputText @bind-Value="@person.FirstName" id="firstname" class="form-control" />
-            <ValidationMessage For="@(() => person.FirstName)" />
-        </p>
-        <p>
-            <label for="lastname">Last Name:</label>
-            <InputText @bind-Value="@person.LastName" id="lastname" class="form-control" />
-            <ValidationMessage For="@(() => person.LastName)" />
-        </p>
-        <p>
+        </div>
+        <div class="row g-3 mb-3">
+            <div class="col-6">
+                <label for="firstname">First Name:</label>
+                <InputText @bind-Value="@person.FirstName" id="firstname" class="form-control" />
+                <ValidationMessage For="@(() => person.FirstName)" />
+            </div>
+            <div class="col-6">
+                <label for="lastname">Last Name:</label>
+                <InputText @bind-Value="@person.LastName" id="lastname" class="form-control" />
+                <ValidationMessage For="@(() => person.LastName)" />
+            </div>
+        </div>
+        <div class="mb-3">
             <label for="researcharea">Research Area:</label>
             <InputText @bind-Value="@person.ResearchArea" id="researcharea" class="form-control" />
             <ValidationMessage For="@(() => person.ResearchArea)" />
-        </p>
-        <p>
+        </div>
+        <div class="mb-3">
             <label for="emailaddress">Email Address:</label>
             <InputText @bind-Value="@person.EmailAddress" id="emailaddress" class="form-control" />
             <ValidationMessage For="@(() => person.EmailAddress)" />
-        </p>
-        <p>
+        </div>
+        <div class="mb-3">
             <label for="biography">Biography:</label>
             <InputText @bind-Value="@person.Biography" id="biography" class="form-control" />
             <ValidationMessage For="@(() => person.Biography)" />
-        </p>
-        <p>
-            <label for="imageurl">ImageURL:</label>
-            <InputText @bind-Value="@person.ImageURL" id="imageurl" class="form-control" />
-            <ValidationMessage For="@(() => person.ImageURL)" />
-        </p>
-        <p>
-            <label for="weblink">Web link:</label>
-            <InputText @bind-Value="@person.WebLink" id="weblink" class="form-control" />
-            <ValidationMessage For="@(() => person.WebLink)" />
-        </p>
+        </div>
+        <div class="row g-3 mb-3">
+            <div class="col-6">
+                <label for="imageurl">Image URL:</label>
+                <InputText @bind-Value="@person.ImageURL" id="imageurl" class="form-control" />
+                <ValidationMessage For="@(() => person.ImageURL)" />
+            </div>
+            <div class="col-6">
+                <label for="weblink">Web Link:</label>
+                <InputText @bind-Value="@person.WebLink" id="weblink" class="form-control" />
+                <ValidationMessage For="@(() => person.WebLink)" />
+            </div>
+        </div>
+
         <button class="btn btn-primary" type="submit">Save</button>
     </EditForm>
 
@@ -55,7 +61,6 @@
     {
         <p><div class="alert alert-success">√ Changes saved</div></p>
     }
-
 }
 
 @code {
@@ -69,19 +74,11 @@
     [Inject]
     public IPeopleRepository PeopleRepository { get; set; }
 
-    protected override async Task OnInitializedAsync()
-    {
-        //person = await PeopleRepository.GetPeople(Id);
-        //editContext = new EditContext(person!);
-        //editContext.SetFieldCssClassProvider(new BootstrapClassProvider());
-    }
-
     async Task SaveChangesAsync()
     {
         await PeopleRepository.Add(person);
-        //editContext.MarkAsUnmodified();
+        Id = await PeopleRepository.GetLastRecord();
         savedChanges = true;
+        Navigation.NavigateTo($"/PersonDetails/{Id}");
     }
-
-    // async Task ConfirmInternalNavigation(LocalChangingContext)
 }

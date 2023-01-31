@@ -53,6 +53,11 @@ namespace LabWeb.DataStore.Repositories
             string sql = "select * from dbo.People where Id = @Id";
             return _DbContext.LoadSingleData<PersonModel, dynamic>(sql, new { Id = id });
         }
+        public Task<int> GetLastRecord()
+        {
+            string sql = "select * from dbo.People where Id=(select max(Id) from dbo.People);";
+            return _DbContext.LoadSingleData<int, dynamic>(sql, new { });
+        }
 
     }
 }

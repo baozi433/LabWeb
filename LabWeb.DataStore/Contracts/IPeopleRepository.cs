@@ -15,6 +15,7 @@ namespace LabWeb.DataStore.Contracts
         Task<int> Add(PersonModel person);
         Task<int> Update(int id);
         Task<PersonModel> GetPeople(int id);
+        Task<int> GetLastRecord();
 
     }
 }
