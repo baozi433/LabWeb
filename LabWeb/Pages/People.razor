@@ -1,31 +1,22 @@
 ﻿@page "/people"
 
 <h3 class="text-center">Staff</h3>
-<hr />
+<hr/>
 
-@if(AllPeople == null)
+@if (SearchPeople == null)
 {
     <h3>Loading data...</h3>
 }
 else
 {
-    var peopleCount = AllPeople.Count();
+    var peopleCount = SearchPeople.Count();
 
     <SearchBar OnSearch="HandleSearch"></SearchBar>
-
 
     if(peopleCount > 0)
     {
         <div class="row mt-3 d-flex">
-            @if(string.IsNullOrWhiteSpace(searchTerm))
-            {
-                <DisplayPeople people="AllPeople"></DisplayPeople>
-            }
-            else
-            {
-                <DisplayPeople people="SearchPeople"></DisplayPeople>
-            }
-
+            <DisplayPeople people="SearchPeople"></DisplayPeople>
         </div>
         <hr class="mb-3" />
     }
@@ -37,7 +28,7 @@ else
     [Inject]
     public IPeopleRepository PeopleRepository { get; set; }
 
-    public IEnumerable<PersonModel> AllPeople { get; set; }
+    //public IEnumerable<PersonModel> AllPeople { get; set; }
 
     public IEnumerable<PersonModel> SearchPeople { get; set; }
 
@@ -45,7 +36,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        AllPeople = await PeopleRepository.GetPeople();
+        //AllPeople = await PeopleRepository.GetPeople();
         SearchPeople = await PeopleRepository.SearchPeople(searchTerm);
     }
 

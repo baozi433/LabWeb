@@ -1,4 +1,4 @@
-﻿<form class="row g-3">
+﻿<form class="row g-3 mt-2">
     <div class="col-auto p-2">
         Search:
     </div>
@@ -12,9 +12,8 @@
 </form>
 
 @code {
-    //private string filter; //state data binding
     [Parameter]
-    public string filter { get; set; }
+    public string filter { get; set; } //state data binding
 
     [Parameter]
     public EventCallback<string> OnSearch { get; set; }

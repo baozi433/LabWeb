@@ -1,0 +1,38 @@
+﻿
+@if(person != null)
+{
+    <tr>
+        <td>
+            <NavLink href="@($"/admin/persondetails/{person.Id}")">@person.FirstName @person.LastName</NavLink>
+        </td>
+        <td>@person.Title</td>
+        <td>@person.ResearchArea</td>
+        <td>@person.EmailAddress</td>
+        <td>
+            <button class="btn btn-primary btn-sm">
+                <span class="oi oi-bookmark"></span>
+            </button>
+            <button class="btn btn-warningbtn-sm">
+                <span class="oi oi-pencil"></span>
+            </button>
+            <button class="btn btn-danger btn-sm" @onclick="OnDelete">
+                <span class="oi oi-delete"></span>  
+            </button>
+        </td>
+    </tr>
+}
+
+@code {
+    [Parameter]
+    public PersonModel person { get; set; }
+
+    [Parameter]
+    public EventCallback OnDelete { get; set; }
+
+    public void HandleDelete()
+    {
+        OnDelete.InvokeAsync(person);
+    }
+
+
+}

@@ -1,0 +1,47 @@
+﻿@page "/admin/people"
+
+<h3 class="text-center">staff</h3>
+<br/>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Title</th>
+            <th>Research Area</th>
+            <th>Email</th>
+            <th>Operation</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(People != null && People.Count() > 0)
+        {
+            foreach(PersonModel person in People)
+            {
+                <PersonItem person="person" OnDelete="()=>HandleDelete(person)"></PersonItem>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4">Cannot find people!</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    [Inject]
+    public IPeopleRepository PeopleRepository { get; set; }
+    public IEnumerable<PersonModel> People { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        People = await PeopleRepository.GetPeople();
+    }
+
+    public async void HandleDelete(PersonModel person)
+    {
+        await PeopleRepository.DeletePerson(person.Id);
+    }
+}
