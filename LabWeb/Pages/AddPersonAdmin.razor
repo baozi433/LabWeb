@@ -1,0 +1,87 @@
+﻿@page "/admin/people/add/"
+
+<PageTitle>Add person</PageTitle>
+
+@if (person != null)
+{
+    <h3>Edit person</h3>
+
+    <EditForm Model="@person" OnSubmit="SaveChangesAsync">
+        <DataAnnotationsValidator />
+        <p>
+            <label for="title">Title:</label>
+            <InputText @bind-Value="@person.Title" id="title" class="form-control" />
+            <ValidationMessage For="@(() => person.Title)" />
+        </p>
+        <p>
+            <label for="firstname">First Name:</label>
+            <InputText @bind-Value="@person.FirstName" id="firstname" class="form-control" />
+            <ValidationMessage For="@(() => person.FirstName)" />
+        </p>
+        <p>
+            <label for="lastname">Last Name:</label>
+            <InputText @bind-Value="@person.LastName" id="lastname" class="form-control" />
+            <ValidationMessage For="@(() => person.LastName)" />
+        </p>
+        <p>
+            <label for="researcharea">Research Area:</label>
+            <InputText @bind-Value="@person.ResearchArea" id="researcharea" class="form-control" />
+            <ValidationMessage For="@(() => person.ResearchArea)" />
+        </p>
+        <p>
+            <label for="emailaddress">Email Address:</label>
+            <InputText @bind-Value="@person.EmailAddress" id="emailaddress" class="form-control" />
+            <ValidationMessage For="@(() => person.EmailAddress)" />
+        </p>
+        <p>
+            <label for="biography">Biography:</label>
+            <InputText @bind-Value="@person.Biography" id="biography" class="form-control" />
+            <ValidationMessage For="@(() => person.Biography)" />
+        </p>
+        <p>
+            <label for="imageurl">ImageURL:</label>
+            <InputText @bind-Value="@person.ImageURL" id="imageurl" class="form-control" />
+            <ValidationMessage For="@(() => person.ImageURL)" />
+        </p>
+        <p>
+            <label for="weblink">Web link:</label>
+            <InputText @bind-Value="@person.WebLink" id="weblink" class="form-control" />
+            <ValidationMessage For="@(() => person.WebLink)" />
+        </p>
+        <button class="btn btn-primary" type="submit">Save</button>
+    </EditForm>
+
+    @if (savedChanges)
+    {
+        <p><div class="alert alert-success">√ Changes saved</div></p>
+    }
+
+}
+
+@code {
+    //private EditContext editContext = default!;
+    private PersonModel? person = new();
+    private bool savedChanges;
+
+    [Parameter]
+    public int Id { get; set; }
+
+    [Inject]
+    public IPeopleRepository PeopleRepository { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        //person = await PeopleRepository.GetPeople(Id);
+        //editContext = new EditContext(person!);
+        //editContext.SetFieldCssClassProvider(new BootstrapClassProvider());
+    }
+
+    async Task SaveChangesAsync()
+    {
+        await PeopleRepository.Add(person);
+        //editContext.MarkAsUnmodified();
+        savedChanges = true;
+    }
+
+    // async Task ConfirmInternalNavigation(LocalChangingContext)
+}
