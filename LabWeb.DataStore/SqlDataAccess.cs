@@ -47,6 +47,7 @@ namespace LabWeb.DataStore
             using (IDbConnection connection = new SqlConnection(connectionString))
             {
                 var data = await connection.ExecuteAsync(sql, parameters);
+
                 return data;
             }
         }

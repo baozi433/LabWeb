@@ -1,9 +1,11 @@
 ﻿@page "/admin/people"
+@inject NavigationManager Navigation
 
 <PageTitle>Admin - People</PageTitle>
 
 <h3 class="text-center">staff</h3>
 <br/>
+<button class="btn btn-primary" type="button" @onclick="HandleAdd">Add</button>
 
 <table class="table">
     <thead>
@@ -45,5 +47,10 @@
     public async void HandleDelete(PersonModel person)
     {
         await PeopleRepository.DeletePerson(person.Id);
+    }
+
+    public void HandleAdd()
+    {
+        Navigation.NavigateTo("/admin/people/add/");
     }
 }
