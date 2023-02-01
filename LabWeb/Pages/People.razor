@@ -30,15 +30,12 @@ else
     [Inject]
     public IPeopleRepository PeopleRepository { get; set; }
 
-    //public IEnumerable<PersonModel> AllPeople { get; set; }
-
     public IEnumerable<PersonModel> SearchPeople { get; set; }
 
     public string searchTerm = "";
 
     protected override async Task OnInitializedAsync()
     {
-        //AllPeople = await PeopleRepository.GetPeople();
         SearchPeople = await PeopleRepository.SearchPeople(searchTerm);
     }
 

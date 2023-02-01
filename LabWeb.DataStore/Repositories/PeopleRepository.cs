@@ -42,10 +42,11 @@ namespace LabWeb.DataStore.Repositories
             return _DbContext.LoadData<PersonModel, dynamic>(sql, new { FirstName = filter});
         }
 
-        public Task<int> Update(int id)
+        // using person object as parameter instead of id is to avoid dapper error
+        public Task<int> Update(PersonModel person)
         {
             string sql = "update dbo.People set Title = @Title, FirstName = @FirstName, LastName = @LastName, ResearchArea = @ResearchArea, EmailAddress= @EmailAddress, Biography = @Biography, ImageURL = @ImageURL, WebLink = @WebLink where Id = @Id";
-            return _DbContext.SaveData(sql, new { Id = id });
+            return _DbContext.SaveData(sql, person);
         }
 
         public Task<PersonModel> GetPeople(int id)

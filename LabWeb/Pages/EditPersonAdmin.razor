@@ -85,7 +85,7 @@
     {
         if (editContext.IsModified())
         {
-            await PeopleRepository.Update(Id);
+            await PeopleRepository.Update(person);
             editContext.MarkAsUnmodified();
             savedChanges = true;
             Navigation.NavigateTo($"/PersonDetails/{Id}");

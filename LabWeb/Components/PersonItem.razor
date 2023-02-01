@@ -1,6 +1,4 @@
-﻿@inject NavigationManager Navigation
-
-@if(person != null)
+﻿@if(person != null)
 {
     <tr>
         <td>
@@ -11,7 +9,7 @@
         <td>@person.EmailAddress</td>
         <td>
             <button class="btn btn-primary btn-sm" @onclick="OnDetail">
-                <span class="oi oi-bookmark"></span>
+                <span class="oi oi-info"></span>
             </button>
             <button class="btn btn-warningbtn-sm" @onclick="OnEdit">
                 <span class="oi oi-pencil"></span>

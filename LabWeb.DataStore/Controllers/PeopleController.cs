@@ -93,15 +93,14 @@ namespace LabWeb.DataStore.Controllers
         }
 
         [HttpPatch("updateperson/{id}")]
-        public async Task<ActionResult<int>> UpdatePerson(int id)
+        public async Task<ActionResult<int>> UpdatePerson(PersonModel person)
         {
             try
             {
-                var person = await _peopleRepository.GetPeople(id);
                 if (person == null) { return NotFound("The person dose not exits"); }
                 else
                 {
-                    var data = await _peopleRepository.Update(id);
+                    var data = await _peopleRepository.Update(person);
                     return Ok(data);
                 }
             }

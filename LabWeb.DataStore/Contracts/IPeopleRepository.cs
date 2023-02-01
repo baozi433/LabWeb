@@ -13,7 +13,7 @@ namespace LabWeb.DataStore.Contracts
         Task<List<PersonModel>> SearchPeople(string filter);
         Task<int> DeletePerson(int id);
         Task<int> Add(PersonModel person);
-        Task<int> Update(int id);
+        Task<int> Update(PersonModel person);
         Task<PersonModel> GetPeople(int id);
         Task<int> GetLastRecord();
 
