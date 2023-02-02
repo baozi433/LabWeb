@@ -5,7 +5,7 @@
             <NavLink href="@($"/persondetails/{person.Id}")">@person.FirstName @person.LastName</NavLink>
         </td>
         <td>@person.Title</td>
-        <td>@person.ResearchArea</td>
+        <td>@ShortDescription(person.ResearchArea)</td>
         <td>@person.EmailAddress</td>
         <td>
             <button class="btn btn-primary btn-sm" @onclick="OnDetail">
@@ -36,4 +36,9 @@
 
     [Parameter]
     public EventCallback OnDetail { get; set; }
+
+    private string ShortDescription(string description)
+    {
+        return description.Length <= 35 ? description : description.Substring(0, 35);
+    }
 }
