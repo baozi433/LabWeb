@@ -43,7 +43,7 @@
             await using FileStream fs = new(FilePath, FileMode.Create);
             await e.File.OpenReadStream(maxFileSize).CopyToAsync(fs);
 
-            person.ImageURL = HandleFileName();
+            person.ImageURL = HandleFileName(); //This only works locally. If deploy this in the cloud, we need to consider the file path.
         }
         catch (Exception ex)
         {

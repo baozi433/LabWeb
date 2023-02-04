@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LabWeb.CoreBusiness
 {
@@ -18,5 +20,10 @@ namespace LabWeb.CoreBusiness
         [Required]
         public string ImageURL { get; set; } = string.Empty;
         public string WebLink { get; set; } = string.Empty;
+        
+        public int CategoryID { get; set; }
+
+        [ForeignKey("CategoryID")]
+        public PersonCategory PersonCategory { get; set; }
     }
 }

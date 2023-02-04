@@ -9,10 +9,17 @@
 
     <EditForm EditContext="@editContext" OnValidSubmit="SaveChangesAsync">
         <DataAnnotationsValidator />
-        <div class="mb-3">
-            <label for="title">Title:</label>
-            <InputText @bind-Value="@person.Title" id="title" class="form-control" />
-            <ValidationMessage For="@(() => person.Title)" />
+        <div class="row g-3 mb-3">
+            <div class="col-6">
+                <label for="title">Title:</label>
+                <InputText @bind-Value="@person.Title" id="title" class="form-control" />
+                <ValidationMessage For="@(() => person.Title)" />
+            </div>
+            <div class="col-6">
+                <label for="category" title="Staff:1, Students:2, Affiliated Staff:3, Alumni:4">Category: </label>
+                <InputNumber @bind-Value="@person.CategoryID" id="category" class="form-control" />
+                <ValidationMessage For="@(() => person.CategoryID)" />
+            </div>        
         </div>
         <div class="row g-3 mb-3">
             <div class="col-6">
