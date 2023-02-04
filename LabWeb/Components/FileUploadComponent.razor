@@ -1,0 +1,62 @@
+﻿@inject IConfiguration config
+
+<InputFile OnChange="@LoadFiles" accept=".jpg,.png,.jepg"/>
+
+@if(errors.Count > 0)
+{
+    <h3>Errors:</h3>
+    <ul class="text-danger">
+        @foreach(var error in errors)
+        {
+            <li>@error</li>
+        }
+    </ul>
+}
+
+@code {
+    private long maxFileSize = 1024 * 1024 * 3; //represents 3MB
+    private int maxAllowedFiles = 1;
+    private List<string> errors = new();
+
+    private string FilePath { get; set; } = string.Empty;
+
+    [Parameter]
+    public PersonModel person { get; set; }
+
+    private async Task LoadFiles(InputFileChangeEventArgs e)
+    {
+        errors.Clear();
+
+        if(e.FileCount > maxAllowedFiles)
+        {
+            errors.Add($"Error: Attempting to upload {e.FileCount} files, but only {maxAllowedFiles} files can be uploaded.");
+        }
+
+        try
+        {
+            string newFileName = Path.ChangeExtension(Path.GetRandomFileName(), Path.GetExtension(e.File.Name));
+
+            FilePath = Path.Combine(config.GetValue<string>("HeadShotFileStorage")!, "images", newFileName);
+
+            //Directory.CreateDirectory(Path.Combine(config.GetValue<string>("HeadShotFileStorage")!, "images")); //if there is no images folder
+
+            await using FileStream fs = new(FilePath, FileMode.Create);
+            await e.File.OpenReadStream(maxFileSize).CopyToAsync(fs);
+
+            person.ImageURL = HandleFileName();
+        }
+        catch (Exception ex)
+        {
+            errors.Add($"File: {e.File.Name} Error: {ex.Message}");
+        }
+    }
+
+    public string HandleFileName()
+    {
+        FilePath = FilePath.Replace("\\", "/");
+        string word = "/wwwroot";
+        int startIndex = FilePath.IndexOf(word) + word.Length;
+        FilePath = FilePath.Substring(startIndex);
+        return FilePath;
+    }
+}

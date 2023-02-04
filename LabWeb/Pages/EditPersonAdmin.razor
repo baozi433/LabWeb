@@ -53,8 +53,9 @@
                 <ValidationMessage For="@(() => person.WebLink)" />
             </div>
         </div>
+        <FileUploadComponent person="@person"></FileUploadComponent>
 
-        <button class="btn btn-primary" type="submit">Save</button>
+        <button class="btn btn-primary float-end" type="submit">Save</button>
     </EditForm>
 
     @if(savedChanges && !editContext.IsModified())
@@ -83,13 +84,14 @@
 
     async Task SaveChangesAsync()
     {
-        if (editContext.IsModified())
-        {
+        //if (editContext.IsModified())
+        //{
             await PeopleRepository.Update(person);
             editContext.MarkAsUnmodified();
             savedChanges = true;
             Navigation.NavigateTo($"/PersonDetails/{Id}");
-        }
+        //}
     }
+   
 
 }

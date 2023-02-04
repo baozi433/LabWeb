@@ -24,16 +24,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xEaXNwbGF5RXJyb3IucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/yuanj/Documents/Projects/.NET/LabWeb/LabWeb/Components/DisplayPeople.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xEaXNwbGF5UGVvcGxlLnJhem9y
+[C:/Users/yuanj/Documents/Projects/.NET/LabWeb/LabWeb/Components/DisplayPeopleComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xEaXNwbGF5UGVvcGxlQ29tcG9uZW50LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/yuanj/Documents/Projects/.NET/LabWeb/LabWeb/Components/PersonItem.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQZXJzb25JdGVtLnJhem9y
+[C:/Users/yuanj/Documents/Projects/.NET/LabWeb/LabWeb/Components/FileUploadComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xGaWxlVXBsb2FkQ29tcG9uZW50LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/yuanj/Documents/Projects/.NET/LabWeb/LabWeb/Components/SearchBar.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xTZWFyY2hCYXIucmF6b3I=
+[C:/Users/yuanj/Documents/Projects/.NET/LabWeb/LabWeb/Components/PersonItemComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQZXJzb25JdGVtQ29tcG9uZW50LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/yuanj/Documents/Projects/.NET/LabWeb/LabWeb/Components/SearchBarComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xTZWFyY2hCYXJDb21wb25lbnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/yuanj/Documents/Projects/.NET/LabWeb/LabWeb/Pages/AddPersonAdmin.razor]

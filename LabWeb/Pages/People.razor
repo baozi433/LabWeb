@@ -13,12 +13,12 @@ else
 {
     var peopleCount = SearchPeople.Count();
 
-    <SearchBar OnSearch="HandleSearch"></SearchBar>
+    <SearchBarComponent OnSearch="HandleSearch"></SearchBarComponent>
 
     if(peopleCount > 0)
     {
         <div class="row mt-3 d-flex">
-            <DisplayPeople people="SearchPeople"></DisplayPeople>
+            <DisplayPeopleComponent people="SearchPeople"></DisplayPeopleComponent>
         </div>
         <hr class="mb-3" />
     }

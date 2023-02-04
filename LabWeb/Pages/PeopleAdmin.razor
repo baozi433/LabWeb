@@ -21,7 +21,7 @@
         {
             foreach(PersonModel person in People)
             {
-                <PersonItem person="person" OnDelete="()=>HandleDelete(person)" OnDetail="()=>HandleDetail(person)" OnEdit="()=>HandleEdit(person)"></PersonItem>
+                <PersonItemComponent person="person" OnDelete="()=>HandleDelete(person)" OnDetail="()=>HandleDetail(person)" OnEdit="()=>HandleEdit(person)"></PersonItemComponent>
             }
         }
         else
