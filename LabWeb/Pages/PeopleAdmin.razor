@@ -4,7 +4,16 @@
 <PageTitle>Admin - People</PageTitle>
 
 <h3 class="text-center">staff</h3>
-<button class="btn btn-primary float-end m-3" type="button" @onclick="HandleAdd"><oi class="oi oi-plus small"></oi></button>
+
+<div class="row mb-2">
+    <div class="col-6">
+        <SearchBarComponent OnSearch="HandleSearch"></SearchBarComponent>
+    </div>
+    <div class="col-6">
+        <button class="btn btn-primary float-end m-3" type="button" @onclick="HandleAdd"><oi class="oi oi-plus small"></oi></button>
+    </div>
+
+</div>
 
 <table class="table table-hover">
     <thead>
@@ -38,9 +47,12 @@
     public IPeopleRepository PeopleRepository { get; set; }
     public IEnumerable<PersonModel> People { get; set; }
 
+    public string searchTerm = "";
+
     protected override async Task OnInitializedAsync()
     {
-        People = await PeopleRepository.GetPeople();
+        //People = await PeopleRepository.GetPeople();
+        People = await PeopleRepository.SearchPeople(searchTerm);
     }
 
     public async void HandleDelete(PersonModel person)
@@ -64,5 +76,12 @@
     public void HandleDetail(PersonModel person)
     {
         Navigation.NavigateTo($"/persondetails/{person.Id}");
+    }
+
+    private async void HandleSearch(string filter)
+    {
+        searchTerm = filter;
+        People = await PeopleRepository.SearchPeople(searchTerm);
+        await InvokeAsync(() => { StateHasChanged(); });
     }
 }
