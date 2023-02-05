@@ -46,4 +46,17 @@ else
         await InvokeAsync(() => { StateHasChanged(); });
     }
 
+    protected IOrderedEnumerable<IGrouping<int, PersonModel>> GetGroupedPeopleByCategory()
+    {
+        return from person in SearchPeople
+               group person by person.CategoryId into peopleByCatGroup
+               orderby peopleByCatGroup.Key
+               select peopleByCatGroup;
+    }
+
+    //protected string GetCategoryName(IGrouping<int, PersonModel> groupedPeople)
+    //{
+    //    return groupedPeople.FirstOrDefault(pg => pg.CategoryId == groupedPeople.Key).cate
+    //}
+
 }

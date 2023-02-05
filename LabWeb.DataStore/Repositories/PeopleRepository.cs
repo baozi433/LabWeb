@@ -18,7 +18,7 @@ namespace LabWeb.DataStore.Repositories
         }
         public Task<int> Add(PersonModel person)
         {
-            string sql = "insert into dbo.People (Title, FirstName, LastName, ResearchArea, EmailAddress, Biography, ImageURL) values (@Title, @FirstName, @LastName, @ResearchArea, @EmailAddress, @Biography, @ImageURL)";
+            string sql = "insert into dbo.People (Title, FirstName, LastName, ResearchArea, EmailAddress, Biography, ImageURL, WebLink, CategoryId) values (@Title, @FirstName, @LastName, @ResearchArea, @EmailAddress, @Biography, @ImageURL, @WebLink, @CategoryId)";
             return _DbContext.SaveData(sql, person);
         }
 
@@ -45,7 +45,7 @@ namespace LabWeb.DataStore.Repositories
         // using person object as parameter instead of id is to avoid dapper error
         public Task<int> Update(PersonModel person)
         {
-            string sql = "update dbo.People set Title = @Title, FirstName = @FirstName, LastName = @LastName, ResearchArea = @ResearchArea, EmailAddress= @EmailAddress, Biography = @Biography, ImageURL = @ImageURL, WebLink = @WebLink where Id = @Id";
+            string sql = "update dbo.People set Title = @Title, FirstName = @FirstName, LastName = @LastName, ResearchArea = @ResearchArea, EmailAddress= @EmailAddress, Biography = @Biography, ImageURL = @ImageURL, WebLink = @WebLink, CategoryId = @CategoryId where Id = @Id";
             return _DbContext.SaveData(sql, person);
         }
 
