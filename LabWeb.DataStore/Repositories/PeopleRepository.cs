@@ -38,8 +38,8 @@ namespace LabWeb.DataStore.Repositories
         {
             if(string.IsNullOrWhiteSpace(filter)) return GetPeople();
 
-            string sql = "select * from dbo.People where FirstName = @FirstName";
-            return _DbContext.LoadData<PersonModel, dynamic>(sql, new { FirstName = filter});
+            string sql = "select * from dbo.People where FirstName like @FirstName";
+            return _DbContext.LoadData<PersonModel, dynamic>(sql, new { FirstName = '%' + filter + '%'});
         }
 
         // using person object as parameter instead of id is to avoid dapper error
