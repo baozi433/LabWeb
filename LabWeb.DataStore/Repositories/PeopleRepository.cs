@@ -1,4 +1,5 @@
 ﻿using LabWeb.CoreBusiness;
+using LabWeb.DataStore.Extensions;
 using LabWeb.DataStore.Repositories.Contracts;
 using System;
 using System.Collections.Generic;
@@ -78,5 +79,6 @@ namespace LabWeb.DataStore.Repositories
             string sql = "select * from dbo.People where CategoryId = @Id";
             return _DbContext.LoadData<PersonModel, dynamic>(sql, new { Id = id });
         }
+
     }
 }

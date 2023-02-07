@@ -63,18 +63,14 @@ namespace LabWeb.DataStore.Controllers
             }
         }
 
-        [HttpPost("addperson/")]
+        [HttpPost("addperson")]
         public async Task<ActionResult<int>> AddPerson(PersonModel personModel)
         {
             try
             {
-                var person = _peopleRepository.GetPerson(personModel.Id);
-                if (person == null) 
-                {
-                    var data = await _peopleRepository.Add(personModel);
-                    return Ok(data);
-                }
-                else { return BadRequest("The person already exists"); }
+                var data = await _peopleRepository.Add(personModel);
+                if (data == 0) { return BadRequest("Fail to add this person"); }
+                else { return Ok(data); }
             }
             catch(Exception)
             {
@@ -101,7 +97,7 @@ namespace LabWeb.DataStore.Controllers
             }
         }
 
-        [HttpPatch("updateperson/{person.id}")]
+        [HttpPut("updateperson/{person.id}")]
         public async Task<ActionResult<int>> UpdatePerson(PersonModel person)
         {
             try

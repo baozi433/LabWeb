@@ -18,8 +18,8 @@ namespace LabWeb.Services
         {
             try
             {
-                var response = await _httpClient.PostAsJsonAsync($"api/people/addperson/", person);
-                return 1;
+                var response = await _httpClient.PostAsJsonAsync($"api/people/addperson", person);
+                return response.IsSuccessStatusCode ? 1 : 0;
             }
             catch (HttpRequestException e)
             {
@@ -32,7 +32,7 @@ namespace LabWeb.Services
             try
             {
                 var response = await _httpClient.DeleteAsync($"api/people/deleteperson/{id}");
-                return 1;
+                return response.IsSuccessStatusCode ? 1 : 0;
             }
             catch (HttpRequestException e)
             {
@@ -145,7 +145,7 @@ namespace LabWeb.Services
             try
             {
                 var response = await _httpClient.PatchAsJsonAsync($"api/people/updateperson/{person.Id}", person);
-                return 1;
+                return response.IsSuccessStatusCode ? 1 : 0;
             }
             catch (HttpRequestException e)
             {

@@ -2,8 +2,8 @@
 
 <PageTitle>People at HIT Lab NZ</PageTitle>
 
-<h3 class="text-center">Staff</h3>
-<hr/>
+@*<h3 class="text-center">Staff</h3>
+<hr/>*@
 
 @if (SearchPeople == null)
 {
@@ -17,36 +17,75 @@ else
 
     if(peopleCount > 0)
     {
-        <div class="row">
-            <DisplayPeopleComponent people="SearchPeople"></DisplayPeopleComponent>
-        </div>
-        <hr class="mb-3" />
+
+        @foreach(var peopleGroup in GetGroupedPeopleByCategory())
+        {
+            <h4>@GetCategoryName(peopleGroup)</h4>
+
+            <div class="row">
+                <DisplayPeopleComponent people="@peopleGroup"></DisplayPeopleComponent>
+            </div>
+            <hr class="mb-3" />
+        }
+
+
     }
 }
 
 
 @code {
 
-    [Inject]
-    public IPeopleRepository PeopleRepository { get; set; }
+    //[Inject]
+    //public IPeopleRepository PeopleRepository { get; set; }
 
-    public IEnumerable<PersonModel> SearchPeople { get; set; }
+    //public IEnumerable<PersonModel> SearchPeople { get; set; }
+
+    //public string searchTerm = "";
+
+    //protected override async Task OnInitializedAsync()
+    //{
+    //    SearchPeople = await PeopleRepository.SearchPeople(searchTerm);
+    //}
+
+    //private async void HandleSearch(string filter)
+    //{
+    //    searchTerm = filter;
+    //    SearchPeople = await PeopleRepository.SearchPeople(searchTerm);
+    //    await InvokeAsync(() => { StateHasChanged(); });
+    //}
+
+    //protected IOrderedEnumerable<IGrouping<int, PersonModel>> GetGroupedPeopleByCategory()
+    //{
+    //    return from person in SearchPeople
+    //           group person by person.CategoryId into peopleByCatGroup
+    //           orderby peopleByCatGroup.Key
+    //           select peopleByCatGroup;
+    //}
+    ////protected string GetCategoryName(IGrouping<int, PersonModelDto> groupedPeopleDtos)
+    ////{
+    ////    return groupedPeopleDtos.FirstOrDefault(gp => gp.CategoryId == groupedPeopleDtos.Key).CategoryName;
+    ////}
+
+    [Inject]
+    public IPeopleService PeopleService { get; set; }
+
+    public List<PersonModelDto> SearchPeople { get; set; }
 
     public string searchTerm = "";
 
     protected override async Task OnInitializedAsync()
     {
-        SearchPeople = await PeopleRepository.SearchPeople(searchTerm);
+        SearchPeople = await PeopleService.SearchPeople(searchTerm);
     }
 
     private async void HandleSearch(string filter)
     {
         searchTerm = filter;
-        SearchPeople = await PeopleRepository.SearchPeople(searchTerm);
+        SearchPeople = await PeopleService.SearchPeople(searchTerm);
         await InvokeAsync(() => { StateHasChanged(); });
     }
 
-    protected IOrderedEnumerable<IGrouping<int, PersonModel>> GetGroupedPeopleByCategory()
+    protected IOrderedEnumerable<IGrouping<int, PersonModelDto>> GetGroupedPeopleByCategory()
     {
         return from person in SearchPeople
                group person by person.CategoryId into peopleByCatGroup
@@ -54,9 +93,9 @@ else
                select peopleByCatGroup;
     }
 
-    //protected string GetCategoryName(IGrouping<int, PersonModel> groupedPeople)
-    //{
-    //    return groupedPeople.FirstOrDefault(pg => pg.CategoryId == groupedPeople.Key).cate
-    //}
+    protected string GetCategoryName(IGrouping<int, PersonModelDto> groupedPeopleDtos)
+    {
+        return groupedPeopleDtos.FirstOrDefault(gp => gp.CategoryId == groupedPeopleDtos.Key).CategoryName;
+    }
 
 }
