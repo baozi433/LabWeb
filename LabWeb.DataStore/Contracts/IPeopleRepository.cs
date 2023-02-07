@@ -14,8 +14,11 @@ namespace LabWeb.DataStore.Contracts
         Task<int> DeletePerson(int id);
         Task<int> Add(PersonModel person);
         Task<int> Update(PersonModel person);
-        Task<PersonModel> GetPeople(int id);
+        Task<PersonModel> GetPerson(int id);
         Task<int> GetLastRecord();
+        Task<List<PersonCategory>> GetCategories();
+        Task<PersonCategory> GetCategory(int id);
+        Task<List<PersonModel>> GetPeopleByCategory(int id);
 
     }
 }

@@ -19,10 +19,10 @@ namespace LabWeb.CoreBusiness
         public string Biography { get; set; } = string.Empty;
         [Required]
         public string ImageURL { get; set; } = string.Empty;
-        public string WebLink { get; set; } = string.Empty;  
+        public string WebLink { get; set; } = string.Empty;
         public int CategoryId { get; set; }
 
         [ForeignKey("CategoryId")]
-        public PersonCategory PersonCategory { get; set; }
+        public PersonCategory? PersonCategory { get; set; }
     }
 }

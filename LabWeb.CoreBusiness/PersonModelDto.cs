@@ -21,5 +21,41 @@ namespace LabWeb.CoreBusiness
         public string WebLink { get; set; } = string.Empty;
         public int CategoryId { get; set; }
         public string CategoryName { get; set; } = string.Empty;
+
+        public PersonModelDto(PersonModel p)
+        {
+            Id = p.Id;
+            Title = p.Title;
+            FirstName = p.FirstName;
+            LastName = p.LastName;
+            ResearchArea= p.ResearchArea;
+            EmailAddress = p.EmailAddress;
+            Biography = p.Biography;
+            ImageURL= p.ImageURL;
+            WebLink= p.WebLink;
+
+            //p.PersonCategory = new();      
+            CategoryId = p.CategoryId;
+
+            //This solution is hardcoded part and needed to be refined. 
+            switch (CategoryId)
+            {
+                case 1:
+                    CategoryName = "Staff";
+                    break;
+                case 2:
+                    CategoryName = "Affiliated Staff";
+                    break;
+                case 3:
+                    CategoryName = "Students";
+                    break;
+                case 4:
+                    CategoryName = "Alumni";
+                    break;
+                default:
+                    CategoryName = "None";
+                    break;
+            }
+        }
     }
 }

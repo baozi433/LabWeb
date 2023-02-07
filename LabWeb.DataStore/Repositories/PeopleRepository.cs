@@ -3,6 +3,7 @@ using LabWeb.DataStore.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -49,7 +50,7 @@ namespace LabWeb.DataStore.Repositories
             return _DbContext.SaveData(sql, person);
         }
 
-        public Task<PersonModel> GetPeople(int id)
+        public Task<PersonModel> GetPerson(int id)
         {
             string sql = "select * from dbo.People where Id = @Id";
             return _DbContext.LoadSingleData<PersonModel, dynamic>(sql, new { Id = id });
@@ -60,5 +61,22 @@ namespace LabWeb.DataStore.Repositories
             return _DbContext.LoadSingleData<int, dynamic>(sql, new { });
         }
 
+        public Task<List<PersonCategory>> GetCategories()
+        {
+            string sql = "select * from dbo.PersonCategories";
+            return _DbContext.LoadData<PersonCategory, dynamic>(sql, new{ });
+        }
+
+        public Task<PersonCategory> GetCategory(int id)
+        {
+            string sql = "select * from dbo.PersonCategories where Id = @Id";
+            return _DbContext.LoadSingleData<PersonCategory, dynamic>(sql, new { Id = id });
+        }
+
+        public Task<List<PersonModel>> GetPeopleByCategory(int id)
+        {
+            string sql = "select * from dbo.People where CategoryId = @Id";
+            return _DbContext.LoadData<PersonModel, dynamic>(sql, new { Id = id });
+        }
     }
 }

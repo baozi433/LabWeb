@@ -85,7 +85,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        person = await PeopleRepository.GetPeople(Id);
+        person = await PeopleRepository.GetPerson(Id);
         editContext = new EditContext(person!);
     }
 

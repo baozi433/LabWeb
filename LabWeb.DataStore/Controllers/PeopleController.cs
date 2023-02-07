@@ -1,5 +1,6 @@
 ﻿using LabWeb.CoreBusiness;
 using LabWeb.DataStore.Contracts;
+using LabWeb.DataStore.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -23,14 +24,18 @@ namespace LabWeb.DataStore.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<PersonModel>>> GetPeople()
+        public async Task<ActionResult<List<PersonModelDto>>> GetPeople()
         {
             try
             {
                 var people = await _peopleRepository.GetPeople();
 
                 if (people == null) { return NotFound(); }
-                else { return Ok(people); }
+                else 
+                {
+                    var peopleDtos = people.ConvertToDto();
+                    return Ok(peopleDtos); 
+                }
             }
             catch(Exception) 
             {
@@ -38,15 +43,19 @@ namespace LabWeb.DataStore.Controllers
             }
         }
 
-        [HttpGet("getpeople/{id}")]
-        public async Task<ActionResult<PersonModel>> GetPeople(int id)
+        [HttpGet("getperson/{id}")]
+        public async Task<ActionResult<PersonModelDto>> GetPerson(int id)
         {
             try
             {
-                var people = await _peopleRepository.GetPeople(id);
+                var person = await _peopleRepository.GetPerson(id);
 
-                if (people == null) { return BadRequest();}
-                else { return Ok(people); }
+                if (person == null) { return BadRequest();}
+                else 
+                {
+                    var personDto = person.ConvertToDto();
+                    return Ok(personDto); 
+                }
             }
             catch(Exception)
             {
@@ -59,7 +68,7 @@ namespace LabWeb.DataStore.Controllers
         {
             try
             {
-                var person = _peopleRepository.GetPeople(personModel.Id);
+                var person = _peopleRepository.GetPerson(personModel.Id);
                 if (person == null) 
                 {
                     var data = await _peopleRepository.Add(personModel);
@@ -78,7 +87,7 @@ namespace LabWeb.DataStore.Controllers
         {
             try
             {
-                var person = await _peopleRepository.GetPeople(id);
+                var person = await _peopleRepository.GetPerson(id);
                 if(person == null) { return NotFound("The person dose not exits");}
                 else
                 {
@@ -111,16 +120,36 @@ namespace LabWeb.DataStore.Controllers
         }
 
         [HttpGet("searchpeople/{filter}")]
-        public async Task<ActionResult<PersonModel>> SearchPeople(string filter)
+        public async Task<ActionResult<List<PersonModelDto>>> SearchPeople(string filter)
         {
             try
             {
                 var people = await _peopleRepository.SearchPeople(filter);
                 if (people == null) { return NotFound("The person dose not exits"); }
-                else { return Ok(people); }
+                else 
+                {
+                    var peopleDtos = people.ConvertToDto();
+                    return Ok(peopleDtos); 
+                }
             }
             catch (Exception)
             {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+            }
+        }
+
+        [HttpGet(nameof(GetPeopleCategories))]
+        public async Task<ActionResult<List<PersonCategory>>> GetPeopleCategories()
+        {
+            try
+            {
+                var peopleCategories = await _peopleRepository.GetCategories();
+                if (peopleCategories == null) { return NotFound(); }
+                else{ return Ok(peopleCategories); }
+            }
+            catch (Exception)
+            {
+
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
             }
         }
