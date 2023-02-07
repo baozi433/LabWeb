@@ -1,6 +1,6 @@
 using LabWeb.DataStore;
-using LabWeb.DataStore.Contracts;
 using LabWeb.DataStore.Repositories;
+using LabWeb.DataStore.Repositories.Contracts;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Mvc;

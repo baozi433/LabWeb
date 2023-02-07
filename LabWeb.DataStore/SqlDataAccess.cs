@@ -1,5 +1,5 @@
 ﻿using Dapper;
-using LabWeb.DataStore.Contracts;
+using LabWeb.DataStore.Repositories.Contracts;
 using Microsoft.Extensions.Configuration;
 using System.Data;
 using System.Data.Common;

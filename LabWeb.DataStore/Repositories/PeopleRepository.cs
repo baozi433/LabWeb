@@ -1,5 +1,5 @@
 ﻿using LabWeb.CoreBusiness;
-using LabWeb.DataStore.Contracts;
+using LabWeb.DataStore.Repositories.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;

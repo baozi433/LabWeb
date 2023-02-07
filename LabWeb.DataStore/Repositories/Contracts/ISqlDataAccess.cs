@@ -1,4 +1,4 @@
-﻿namespace LabWeb.DataStore.Contracts
+﻿namespace LabWeb.DataStore.Repositories.Contracts
 {
     public interface ISqlDataAccess
     {

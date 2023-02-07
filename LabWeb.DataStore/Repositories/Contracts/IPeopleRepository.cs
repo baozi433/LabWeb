@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LabWeb.DataStore.Contracts
+namespace LabWeb.DataStore.Repositories.Contracts
 {
     public interface IPeopleRepository
     {

@@ -1,6 +1,6 @@
 ﻿using LabWeb.CoreBusiness;
-using LabWeb.DataStore.Contracts;
 using LabWeb.DataStore.Extensions;
+using LabWeb.DataStore.Repositories.Contracts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -50,7 +50,7 @@ namespace LabWeb.DataStore.Controllers
             {
                 var person = await _peopleRepository.GetPerson(id);
 
-                if (person == null) { return BadRequest();}
+                if (person == null) { return NotFound();}
                 else 
                 {
                     var personDto = person.ConvertToDto();
@@ -63,7 +63,7 @@ namespace LabWeb.DataStore.Controllers
             }
         }
 
-        [HttpPost("addperson")]
+        [HttpPost("addperson/")]
         public async Task<ActionResult<int>> AddPerson(PersonModel personModel)
         {
             try
@@ -101,7 +101,7 @@ namespace LabWeb.DataStore.Controllers
             }
         }
 
-        [HttpPatch("updateperson/{id}")]
+        [HttpPatch("updateperson/{person.id}")]
         public async Task<ActionResult<int>> UpdatePerson(PersonModel person)
         {
             try
@@ -149,13 +149,47 @@ namespace LabWeb.DataStore.Controllers
             }
             catch (Exception)
             {
-
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
             }
         }
 
+        [HttpGet("GetPeopleByCategory/{id}")]
+        public async Task<ActionResult<List<PersonModelDto>>> GetPeopleByCategory(int id)
+        {
+            try
+            {
+                var people = await _peopleRepository.GetPeopleByCategory(id);
+                if (people == null) { return NotFound(); }
+                else
+                {
+                    var peopleDtos = people.ConvertToDto();
+                    return Ok(peopleDtos);
+                }
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+            }
+        }
 
+        [HttpGet("GetCategory/{id}")]
+        public async Task<ActionResult<PersonCategory>> GetCategory(int id)
+        {
+            try
+            {
+                var category = await _peopleRepository.GetCategory(id);
+                if (category == null) { return NotFound(); }
+                else
+                {
+                    return Ok(category);
+                }
 
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+            }
+        }
 
     }
 }
