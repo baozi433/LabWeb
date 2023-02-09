@@ -1,10 +1,13 @@
 using LabWeb;
+using LabWeb.Authentication;
 using LabWeb.DataStore;
 using LabWeb.DataStore.Repositories;
 using LabWeb.DataStore.Repositories.Contracts;
 using LabWeb.Services;
 using LabWeb.Services.Contracts;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
@@ -14,16 +17,19 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers(); //blazor serverside adding
+builder.Services.AddAuthenticationCore(); //blazor  authentication
 
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
-builder.Services.AddSingleton<HttpClient>();
+builder.Services.AddSingleton<HttpClient>(); // added to allow httpclient request and response
 builder.Services.AddSingleton(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7236/") });
 
+builder.Services.AddScoped<ProtectedSessionStorage>();
+builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
 builder.Services.AddTransient<ISqlDataAccess, SqlDataAccess>();
 builder.Services.AddTransient<IPeopleRepository, PeopleRepository>();
-builder.Services.AddTransient<IPeopleService, PeopleService>();
+builder.Services.AddTransient<IUserAccountRepository, UserAccountRepository>();
 builder.Services.AddTransient<IPeopleServiceServer, PeopleServiceServer>();
 
 
@@ -42,6 +48,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthorization();
 
 app.MapControllers(); //blazor serverside adding
 

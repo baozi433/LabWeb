@@ -52,6 +52,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/yuanj/Documents/Projects/.NET/LabWeb/LabWeb/Pages/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/yuanj/Documents/Projects/.NET/LabWeb/LabWeb/Pages/People.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGVvcGxlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 

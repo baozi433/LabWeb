@@ -1,6 +1,7 @@
 ﻿using LabWeb.CoreBusiness;
 using LabWeb.DataStore.Extensions;
 using LabWeb.DataStore.Repositories.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,6 +15,7 @@ namespace LabWeb.DataStore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Administrator")]
     public class PeopleController : ControllerBase
     {
         private readonly IPeopleRepository _peopleRepository;
