@@ -3,8 +3,6 @@
 
 <PageTitle>Admin - People</PageTitle>
 
-<h3 class="text-center">staff</h3>
-
 <div class="row mb-2">
     <div class="col-6">
         <SearchBarComponent OnSearch="HandleSearch"></SearchBarComponent>
@@ -44,22 +42,21 @@
 
 @code {
     [Inject]
-    public IPeopleRepository PeopleRepository { get; set; }
+    public IPeopleServiceServer PeopleServiceServer { get; set; }
     public IEnumerable<PersonModel> People { get; set; }
 
     public string searchTerm = "";
 
     protected override async Task OnInitializedAsync()
     {
-        //People = await PeopleRepository.GetPeople();
-        People = await PeopleRepository.SearchPeople(searchTerm);
+        People = await PeopleServiceServer.SearchPeople(searchTerm);
     }
 
     public async void HandleDelete(PersonModel person)
     {
-        await PeopleRepository.DeletePerson(person.Id);
+        await PeopleServiceServer.DeletePerson(person.Id);
         //People = null;
-        People = await PeopleRepository.GetPeople();
+        People = await PeopleServiceServer.GetPeople();
         await InvokeAsync(() => { StateHasChanged(); });
     }
 
@@ -81,7 +78,7 @@
     private async void HandleSearch(string filter)
     {
         searchTerm = filter;
-        People = await PeopleRepository.SearchPeople(searchTerm);
+        People = await PeopleServiceServer.SearchPeople(searchTerm);
         await InvokeAsync(() => { StateHasChanged(); });
     }
 }

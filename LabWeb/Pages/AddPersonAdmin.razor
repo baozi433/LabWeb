@@ -16,7 +16,7 @@
                 <ValidationMessage For="@(() => person.Title)" />
             </div>
             <div class="col-6">
-                <label for="category" title="Staff:1, Students:2, Affiliated Staff:3, Alumni:4">Category: </label>
+                <label for="category" title="Staff:1, Affiliated Staff:2, Students:3, Alumni:4">Category: </label>
                 <InputNumber @bind-Value="@person.CategoryId" id="category" class="form-control" />
                 <ValidationMessage For="@(() => person.CategoryId)" />
             </div>        
@@ -81,12 +81,12 @@
     public int Id { get; set; }
 
     [Inject]
-    public IPeopleRepository PeopleRepository { get; set; }
+    public IPeopleServiceServer PeopleServiceServer { get; set; }
 
     async Task SaveChangesAsync()
     {
-        await PeopleRepository.Add(person);
-        Id = await PeopleRepository.GetLastRecord();
+        await PeopleServiceServer.Add(person);
+        Id = await PeopleServiceServer.GetLastRecord();
         savedChanges = true;
         Navigation.NavigateTo($"/PersonDetails/{Id}");
     }

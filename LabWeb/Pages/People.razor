@@ -2,9 +2,6 @@
 
 <PageTitle>People at HIT Lab NZ</PageTitle>
 
-@*<h3 class="text-center">Staff</h3>
-<hr/>*@
-
 @if (SearchPeople == null)
 {
     <h3>Loading data...</h3>
@@ -20,54 +17,19 @@ else
 
         @foreach(var peopleGroup in GetGroupedPeopleByCategory())
         {
-            <h4>@GetCategoryName(peopleGroup)</h4>
+            <h2 class="text-danger text-center m-5">@GetCategoryName(peopleGroup)</h2>
+            <hr />
 
             <div class="row">
                 <DisplayPeopleComponent people="@peopleGroup"></DisplayPeopleComponent>
             </div>
-            <hr class="mb-3" />
         }
-
-
     }
 }
 
-
 @code {
-
-    //[Inject]
-    //public IPeopleRepository PeopleRepository { get; set; }
-
-    //public IEnumerable<PersonModel> SearchPeople { get; set; }
-
-    //public string searchTerm = "";
-
-    //protected override async Task OnInitializedAsync()
-    //{
-    //    SearchPeople = await PeopleRepository.SearchPeople(searchTerm);
-    //}
-
-    //private async void HandleSearch(string filter)
-    //{
-    //    searchTerm = filter;
-    //    SearchPeople = await PeopleRepository.SearchPeople(searchTerm);
-    //    await InvokeAsync(() => { StateHasChanged(); });
-    //}
-
-    //protected IOrderedEnumerable<IGrouping<int, PersonModel>> GetGroupedPeopleByCategory()
-    //{
-    //    return from person in SearchPeople
-    //           group person by person.CategoryId into peopleByCatGroup
-    //           orderby peopleByCatGroup.Key
-    //           select peopleByCatGroup;
-    //}
-    ////protected string GetCategoryName(IGrouping<int, PersonModelDto> groupedPeopleDtos)
-    ////{
-    ////    return groupedPeopleDtos.FirstOrDefault(gp => gp.CategoryId == groupedPeopleDtos.Key).CategoryName;
-    ////}
-
     [Inject]
-    public IPeopleService PeopleService { get; set; }
+    public IPeopleServiceServer PeopleServiceServer { get; set; }
 
     public List<PersonModelDto> SearchPeople { get; set; }
 
@@ -75,13 +37,13 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        SearchPeople = await PeopleService.SearchPeople(searchTerm);
+        SearchPeople = await PeopleServiceServer.SearchPeopleDtos(searchTerm);
     }
 
     private async void HandleSearch(string filter)
     {
         searchTerm = filter;
-        SearchPeople = await PeopleService.SearchPeople(searchTerm);
+        SearchPeople = await PeopleServiceServer.SearchPeopleDtos(searchTerm);
         await InvokeAsync(() => { StateHasChanged(); });
     }
 

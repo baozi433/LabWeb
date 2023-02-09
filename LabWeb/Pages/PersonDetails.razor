@@ -44,9 +44,9 @@ else
     public int Id { get; set; }
 
     [Inject]
-    public IPeopleRepository PeopleRepository { get; set; }
+    public IPeopleServiceServer PeopleServiceServer { get; set; }
 
-    public PersonModel Person { get; set; }
+    public PersonModelDto Person { get; set; }
 
     public string ErrorMessage { get; set; }
 
@@ -54,7 +54,7 @@ else
     {
         try
         {
-            Person = await PeopleRepository.GetPerson(Id);
+            Person = await PeopleServiceServer.GetPersonDto(Id);
         }
         catch(Exception ex)
         {

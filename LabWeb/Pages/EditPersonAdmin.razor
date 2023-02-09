@@ -81,11 +81,11 @@
     public int Id { get; set; }
 
     [Inject]
-    public IPeopleRepository PeopleRepository { get; set; }
+    public IPeopleServiceServer PeopleServiceServer { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        person = await PeopleRepository.GetPerson(Id);
+        person = await PeopleServiceServer.GetPerson(Id);
         editContext = new EditContext(person!);
     }
 
@@ -93,7 +93,7 @@
     {
         //if (editContext.IsModified())
         //{
-            await PeopleRepository.Update(person);
+        await PeopleServiceServer.Update(person);
             editContext.MarkAsUnmodified();
             savedChanges = true;
             Navigation.NavigateTo($"/PersonDetails/{Id}");

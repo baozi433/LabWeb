@@ -1,3 +1,4 @@
+using LabWeb;
 using LabWeb.DataStore;
 using LabWeb.DataStore.Repositories;
 using LabWeb.DataStore.Repositories.Contracts;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
+using Microsoft.Net.Http.Headers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,12 +18,13 @@ builder.Services.AddControllers(); //blazor serverside adding
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
-builder.Services.AddSingleton(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7236/") });
 builder.Services.AddSingleton<HttpClient>();
+builder.Services.AddSingleton(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7236/") });
 
 builder.Services.AddTransient<ISqlDataAccess, SqlDataAccess>();
 builder.Services.AddTransient<IPeopleRepository, PeopleRepository>();
 builder.Services.AddTransient<IPeopleService, PeopleService>();
+builder.Services.AddTransient<IPeopleServiceServer, PeopleServiceServer>();
 
 
 var app = builder.Build();
