@@ -4,4 +4,4 @@
  1. Blazor Server & Web API on .NET 7
  2. Repository and Service pattern
  3. Using Dapper with generics
- 4. Identity with authentication and authorization
+ 4. Identity with authentication and authorization to access pages and web api
