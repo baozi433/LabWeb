@@ -31,7 +31,7 @@ builder.Services.AddTransient<ISqlDataAccess, SqlDataAccess>();
 builder.Services.AddTransient<IPeopleRepository, PeopleRepository>();
 builder.Services.AddTransient<IUserAccountRepository, UserAccountRepository>();
 builder.Services.AddTransient<IPeopleServiceServer, PeopleServiceServer>();
-
+builder.Services.AddTransient<IPeopleService, PeopleService>();
 
 var app = builder.Build();
 
@@ -42,6 +42,12 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+app.UseCors(policy =>
+    policy.WithOrigins("http://localhost:7236", "https://localhost:7236")
+    .AllowAnyMethod()
+    .WithHeaders(HeaderNames.ContentType)
+    );
 
 app.UseHttpsRedirection();
 

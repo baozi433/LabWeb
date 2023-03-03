@@ -119,7 +119,7 @@ namespace LabWeb.Services
         {
             try
             {
-                var response = await _httpClient.GetAsync($"searchpeople/{filter}");
+                var response = await _httpClient.GetAsync($"api/people/searchpeople/{filter}");
                 if (response.IsSuccessStatusCode)
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.NoContent)

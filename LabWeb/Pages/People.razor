@@ -29,7 +29,7 @@ else
 
 @code {
     [Inject]
-    public IPeopleServiceServer PeopleServiceServer { get; set; }
+    public IPeopleServiceServer PeopleService { get; set; }
 
     public List<PersonModelDto> SearchPeople { get; set; }
 
@@ -37,13 +37,13 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        SearchPeople = await PeopleServiceServer.SearchPeopleDtos(searchTerm);
+        SearchPeople = await PeopleService.SearchPeopleDtos(searchTerm);
     }
 
     private async void HandleSearch(string filter)
     {
         searchTerm = filter;
-        SearchPeople = await PeopleServiceServer.SearchPeopleDtos(searchTerm);
+        SearchPeople = await PeopleService.SearchPeopleDtos(searchTerm);
         await InvokeAsync(() => { StateHasChanged(); });
     }
 

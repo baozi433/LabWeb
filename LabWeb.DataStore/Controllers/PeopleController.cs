@@ -15,7 +15,7 @@ namespace LabWeb.DataStore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Administrator")]
+    //[Authorize(Roles = "Administrator")]
     public class PeopleController : ControllerBase
     {
         private readonly IPeopleRepository _peopleRepository;
