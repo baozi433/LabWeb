@@ -17,10 +17,15 @@
                 <ValidationMessage For="@(() => person.Title)" />
             </div>
             <div class="col-6">
-                <label for="category" title="Staff:1, Students:2, Affiliated Staff:3, Alumni:4">Category: </label>
-                <InputNumber @bind-Value="@person.CategoryId" id="category" class="form-control" />
+                <label for="category">Category:</label>
+                <InputSelect @bind-Value="@person.CategoryId" id="category" class="form-select">
+                    <option value="1">Staff</option>
+                    <option value="2">Affiliated Staff</option>
+                    <option value="3">Students</option>
+                    <option value="4">Alumni</option>
+                </InputSelect>
                 <ValidationMessage For="@(() => person.CategoryId)" />
-            </div>        
+            </div>
         </div>
         <div class="row g-3 mb-3">
             <div class="col-6">
